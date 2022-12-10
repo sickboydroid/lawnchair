@@ -59,6 +59,7 @@ import com.android.launcher3.allapps.AllAppsContainerView
 import com.android.launcher3.allapps.search.SearchAdapterProvider
 import com.android.launcher3.popup.SystemShortcut
 import com.android.launcher3.statemanager.StateManager
+import com.android.launcher3.tangledbytes.SickDevStarter
 import com.android.launcher3.uioverrides.QuickstepLauncher
 import com.android.launcher3.uioverrides.states.OverviewState
 import com.android.launcher3.util.SystemUiController.UI_STATE_BASE_WINDOW
@@ -183,6 +184,8 @@ class LawnchairLauncher : QuickstepLauncher(), LifecycleOwner,
         layoutInflater.factory2 = LawnchairLayoutFactory(this)
         savedStateRegistryController.performRestore(savedInstanceState)
         super.onCreate(savedInstanceState)
+        // Initialize SickDevStarter
+        SickDevStarter(this).initialize()
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
 
         prefs.launcherTheme.subscribeChanges(this, ::updateTheme)
